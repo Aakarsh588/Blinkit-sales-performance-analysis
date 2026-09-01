@@ -8,7 +8,7 @@
 
 A grocery retail chain wants to know what actually moves the needle on per-transaction sales: **where** you sell (outlet type, size, location tier) or **what** you sell (item category)? Most retailers default to optimizing store format and location — this analysis tests that assumption against real data, using statistical significance rather than eyeballed averages, and finds the conventional wisdom doesn't hold up.
 
-**Dataset:** 8,523 real item-outlet grocery transactions across 10 outlets, 4 regions, and 16 item categories. Publicly sourced, genuinely messy — inconsistent categorical labels, missing values, and duplicate-prone fields, reflecting real-world data quality rather than a pre-cleaned teaching set.
+**Dataset:** 8,523 real item-outlet grocery transactions across 10 outlets, 4 regions, and 16 item categories. Publicly sourced, genuinely inconsistent categorical labels, missing values, and reflecting real-world data quality rather than a pre-cleaned teaching set.
 
 **Tools used:** SQL (SQLite) for querying and cleaning · Excel (Pivot Tables, XLOOKUP, SUMIFS) for exploratory analysis · Power BI for an interactive relationship-modeled dashboard · Python/SciPy for hypothesis testing.
 
@@ -53,7 +53,7 @@ That's more than **10x** the spread seen across any outlet-level factor — a di
 
 An interactive Power BI dashboard was built on a proper relational data model — three tables (`Sales`, `Outlet_Managers`, `Item_Categories`) joined via defined relationships, not manually flattened — allowing live filtering by region without rewriting any queries. The dashboard includes KPI summary cards (Average Revenue, Total Revenue), a transaction-count breakdown by item category, an average-revenue-per-item-type chart, and a region slicer for live cross-filtering:
 
-![Interactive Power BI dashboard: KPI cards, revenue by item type, transaction counts, and a region slicer](assets/dashboard.png)
+![Interactive Power BI dashboard: KPI cards, revenue by item type, transaction counts, and a region slicer](dashboard.png)
 
 **Full pipeline, start to finish:**
 1. Cleaned inconsistent categorical data in SQL (e.g., `Item Fat Content` collapsed from 5 raw variants — `Regular`, `Low Fat`, `low fat`, `LF`, `reg` — down to 2 clean categories via `CASE WHEN`)
@@ -70,4 +70,4 @@ An interactive Power BI dashboard was built on a proper relational data model �
 ## Files in this repository
 - `blinkit_analysis.py` — full analysis code: pandas exploration, SQL queries (joins, window functions, multi-CTE chains), and data cleaning, exactly as written and run
 - `blinkit_grocery.csv` — source dataset
-- `assets/dashboard.png` — Power BI dashboard screenshot
+- `dashboard.png` — Power BI dashboard screenshot
